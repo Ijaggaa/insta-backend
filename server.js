@@ -5,32 +5,32 @@ const { exec } = require("child_process");
 const app = express();
 app.use(cors());
 
-app.get("/download", (req, res) => {
-    const url = req.query.url;
+app.get("/", (req, res) => {
+  res.send("Server is running ✅");
+});
 
-    if (!url) {
-        return res.status(400).send("No URL provided");
+app.get("/download", (req, res) => {
+  const url = req.query.url;
+
+  if (!url) {
+    return res.status(400).send("No URL provided");
+  }
+
+  const command = `yt-dlp -f best -g "${url}"`;
+
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send("Error extracting video");
     }
 
-    const command = `yt-dlp -f best -g "${url}"`;
-
-    exec(command, (error, stdout, stderr) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).send("Error extracting video");
-        }
-
-        const videoUrl = stdout.trim();
-        res.send(videoUrl);
-    });
+    const videoUrl = stdout.trim();
+    res.send(videoUrl);
+  });
 });
 
-app.get("/", (req, res) => {
-    res.send("Server is running ✅");
-});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log("🔥 Server running on port " + PORT);
 });
-

@@ -1,26 +1,12 @@
 {
   "name": "insta-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ijaggaa/insta-backend.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Ijaggaa/insta-backend/issues"
-  },
-  "homepage": "https://github.com/Ijaggaa/insta-backend#readme"
+    "express": "^4.18.2",
+    "yt-dlp-exec": "^2.0.0"
+  }
 }
